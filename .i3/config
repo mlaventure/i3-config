@@ -164,5 +164,17 @@ bar {
 # add nm-applet for wireless selection
 exec /usr/bin/nm-applet
 
-# let gnome-settings-daemon handle the special keys
-exec /usr/bin/gnome-settings-daemon
+#
+# Map the special keys we care about
+#
+# Available keymap can be checked with:
+# $ xmodmap -pke
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls (https://github.com/Hummer12007/brightnessctl)
+bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight s +10%
+bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight s 10%-
