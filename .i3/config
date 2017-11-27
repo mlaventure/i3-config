@@ -172,8 +172,17 @@ bar {
         tray_output eDP1
 }
 
-# add nm-applet for wireless selection
-exec /usr/bin/nm-applet
+# start nm-applet for wireless selection
+exec --no-startup-id /usr/bin/nm-applet
+
+# start udiskie for auto usb mount
+exec --no-startup-id /usr/bin/udiskie -ans &
+
+# start blueman-applet for bluetooth
+exec --no-startup-id /usr/bin/blueman-applet &
+
+# volume systray
+exec --no-startup-id /usr/bin/pasystray &
 
 #
 # Map the special keys we care about
