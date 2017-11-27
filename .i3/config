@@ -203,5 +203,5 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Sreen brightness controls (https://github.com/Hummer12007/brightnessctl)
-bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight s +10%
-bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight s 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight s 5%-
