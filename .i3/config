@@ -176,13 +176,16 @@ bar {
 exec --no-startup-id /usr/bin/nm-applet
 
 # start udiskie for auto usb mount
-exec --no-startup-id /usr/bin/udiskie -ans &
+exec --no-startup-id /usr/bin/udiskie -ans
 
 # start blueman-applet for bluetooth
-exec --no-startup-id /usr/bin/blueman-applet &
+exec --no-startup-id /usr/bin/blueman-applet
 
 # volume systray
-exec --no-startup-id /usr/bin/pasystray &
+exec --no-startup-id /usr/bin/pasystray
+
+# logitech unifier receiver
+exec --no-startup-id /usr/bin/solaar
 
 #
 # Map the special keys we care about
