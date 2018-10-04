@@ -154,6 +154,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Always start gnome-calculator floating mode
+for_window [class="(?i)gnome-calculator"] floating enable
+# always start hangout in floating mode and in the scratchpad
+for_window [title="(?i)Google Hangouts -"] floating enable, move scratchpad, resize set 700 570
 
 #
 # Make use of the scratchpad
