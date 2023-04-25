@@ -425,6 +425,7 @@ type = custom/script
 interval = 3
 format = "%{T1}<label>"
 format-padding = 10
+; https://github.com/dietervanhoof/polybar-spotify
 exec = python3 ~/.config/polybar/polybar-spotify/scripts/spotify/spotify_status.py
 format-underline = #1db954
 line-size = 1
@@ -433,6 +434,7 @@ line-size = 1
 type = custom/script
 interval = 2
 format = "%{T3}<label>"
+; https://github.com/dietervanhoof/polybar-spotify
 exec = ~/.config/polybar/polybar-spotify/scripts/spotify/isplaying.sh
 format-underline = #1db954
 line-size = 1
@@ -465,6 +467,7 @@ format-mounted-overline = #2F4F4F
 
 [module/weather]
 type = custom/script
+; https://github.com/x70b1/polybar-scripts
 exec = ~/.config/polybar/polybar-scripts/polybar-scripts/openweathermap-fullfeatured/openweathermap-fullfeatured.sh
 interval = 600
 label-font = 2
