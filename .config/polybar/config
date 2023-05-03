@@ -52,6 +52,7 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 2
 
+; sudo apt install fonts-font-awesome fonts-emojione unifont fonts-unifont
 font-0 = fixed:pixelsize=18;1
 font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = siji:pixelsize=16;1
@@ -61,7 +62,7 @@ font-5 = Emoji One:scale=7
 font-6 = Weather Icons:size=12;1
 
 modules-left = i3
-modules-center = spotify previous playpause next
+modules-center = music-player previous playpause next
 modules-right = backlight-acpi pulseaudio
 
 tray-position = right
@@ -204,6 +205,8 @@ bar-empty-foreground = ${colors.foreground-alt}
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+
+enable-scroll = true
 
 format = <ramp>   <label> <bar>
 
@@ -420,13 +423,12 @@ margin-top = 5
 margin-bottom = 5
 
 
-[module/spotify]
+[module/music-player]
 type = custom/script
 interval = 3
 format = "%{T1}<label>"
 format-padding = 10
-; https://github.com/dietervanhoof/polybar-spotify
-exec = python3 ~/.config/polybar/polybar-spotify/scripts/spotify/spotify_status.py
+exec = ~/.config/polybar/player-track.sh
 format-underline = #1db954
 line-size = 1
 
@@ -434,11 +436,10 @@ line-size = 1
 type = custom/script
 interval = 2
 format = "%{T3}<label>"
-; https://github.com/dietervanhoof/polybar-spotify
-exec = ~/.config/polybar/polybar-spotify/scripts/spotify/isplaying.sh
+exec = ~/.config/polybar/player-status.sh
 format-underline = #1db954
 line-size = 1
-click-left = playerctl play-pause
+click-left = playerctl --player=playerctld play-pause
 
 [module/previous]
 type = custom/script
@@ -447,7 +448,7 @@ format = "%{T3}<label>"
 exec = echo "        "
 format-underline = #1db954
 line-size = 1
-click-left = playerctl previous
+click-left = playerctl --player=playerctld previous
 
 [module/next]
 type = custom/script
@@ -456,7 +457,7 @@ format = "%{T3}<label>"
 exec = echo "        "
 format-underline = #1db954
 line-size = 1
-click-left = playerctl next
+click-left = playerctl --player=playerctld next
 
 [module/hdd]
 type = internal/fs
