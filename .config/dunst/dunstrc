@@ -8,7 +8,7 @@
     # Follow monitor with mouse
     follow = mouse
 
-    geometry = "550x5-30+20"
+    geometry = "550x5-02+40"
 
     # width = 300
     # height = 260
