@@ -1,6 +1,6 @@
 #!/bin/bash
 
-status=$(playerctl --player=playerctld status)
+status=$(playerctl --player=playerctld status 2>/dev/null)
 case "${status}" in
     Playing)
         echo ""
