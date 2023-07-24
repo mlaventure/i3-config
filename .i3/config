@@ -178,6 +178,7 @@ bindsym $mod+Shift+s sticky toggle
 exec --no-startup-id picom --shadow --fading --config $HOME/.config/compton.conf
 # background image
 exec_always --no-startup-id feh --bg-scale $HOME/background
+exec_always --no-startup-id sh -c "DISPLAY=:0 setxkbmap -layout 'us,us' -variant ',alt-intl' -option grp:alt_shift_toggle"
 
 # let us change opacity
 bindsym --whole-window --border $mod+Shift+button4 exec --no-startup-id picom-trans -c -o +5
