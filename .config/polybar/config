@@ -29,7 +29,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/top]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR}
 width = 100%
 height = 40
 ;offset-x = 1%
@@ -60,25 +60,43 @@ font-3 = FontAwesome
 font-4 = OpenSymbol:pixelsize=16
 font-5 = Emoji One:scale=7
 font-6 = Weather Icons:size=12;1
+font-7 = Material Icons:size=12
+font-8 = Noto Color Emoji:size=12
 
 modules-left = i3
 modules-center = music-player previous playpause next
-modules-right = backlight-acpi pulseaudio
+modules-right = bt-batt backlight-acpi pulseaudio tray
 
-tray-position = right
-tray-padding = 2
-try-maxsize = 32
-tray-background = ${colors.background}
+; tray-position = ${env:TRAY_ENABLE:none}
+; tray-padding = 2
+; try-maxsize = 48
+; tray-background = ${colors.background}
 
-;wm-restack = i3
+; wm-restack = i3
+; override-redirect = true
 
-;override-redirect = true
+[module/bt-batt]
+type = custom/script
+interval = 5
+format = "<label>"
+exec = ~/.config/polybar/bt-batt.sh
+
+; This new tray module requires the latest version of autorand, must be compiled
+; and installed manually on 22.04 for now
+[module/tray]
+type = internal/tray
+tray-size = 32
+tray-spacing = 8px
+
+; wm-restack = i3
+; override-redirect = true
+; offset-x = -30%
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 [bar/bottom]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR}
 width = 100%
 height = 50
 ;offset-x = 1%
@@ -107,10 +125,11 @@ font-1 = Weather Icons:size=18;1
 font-2 = FontAwesome:size=18
 font-3 = OpenSymbol:pixelsize=16
 font-4 = Emoji One:scale=7
+font-5 = Material Icons:size=18
 
 modules-left = hdd cpu memory
 modules-center = weather
-modules-right =  wlan battery date systray_module
+modules-right =  wlan eth battery date
 
 ;tray-position = right
 ;tray-padding = 2
@@ -151,7 +170,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -236,7 +255,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp166s0
 interval = 3.0
 
 format-connected-prefix = " "
@@ -260,13 +279,14 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = net0
+interface = enx349971e70718
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = ""
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+label-connected = %local_ip%  %upspeed%  %downspeed%
+label-font = 5
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -276,7 +296,7 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date = " %a, %Y-%m-%d"
 date-alt =
@@ -323,8 +343,8 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT0
-adapter = AC
+battery = BAT1
+adapter = ACAD
 full-at = 98
 
 format-charging = ⚡ <animation-charging> <label-charging>
@@ -425,7 +445,7 @@ margin-bottom = 5
 
 [module/music-player]
 type = custom/script
-interval = 3
+interval = 1
 format = "%{T1}<label>"
 format-padding = 10
 exec = ~/.config/polybar/player-track.sh
